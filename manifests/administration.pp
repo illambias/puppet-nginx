@@ -6,7 +6,7 @@ class nginx::administration {
     system => true,
   }
   ->
-  sudo::directive { 'nginx-administration':
+  sudo::conf { 'nginx-administration':
     ensure  => present,
     content => template('nginx/sudoers.nginx.erb'),
   }
