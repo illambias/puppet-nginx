@@ -1,13 +1,16 @@
-define nginx::site($ensure=present,
-                  $owner = false,
-                  $group = false,
-                  $mode  = 2570,
-                  $server_name = 'localhost',
-                  $doc_root    = '/var/www',
-                  $create_root = false,
-                  $port = 80,
-                  $conf_source = 'nginx/site.conf.erb',
-                  $enable_cgi = false) {
+define nginx::site(
+  $ensure      = present,
+  $owner       = false,
+  $group       = false,
+  $mode        = '2570',
+  $server_name = 'localhost',
+  $doc_root    = '/var/www',
+  $create_root = false,
+  $port        = 80,
+  $conf_source = 'nginx/site.conf.erb',
+  $content     = undef,
+  $enable_cgi  = false,
+) {
 
   include nginx::params
 
@@ -42,7 +45,7 @@ define nginx::site($ensure=present,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template($conf_source),
+    content => pick($content, template($conf_source)),
     notify  => Exec['nginx-reload'],
   }
 
