@@ -1,12 +1,12 @@
 
 ## This part comes from modules/nginx/manifests/classes/administration.pp
-<% if has_variable?("sudo_nginx_admin_user") -%>
-User_Alias NGINX_ADMIN = %nginx-admin,<%= sudo_nginx_admin_user %>
+<% if @sudo_user -%>
+User_Alias NGINX_ADMIN = %nginx-admin,<%= @sudo_user %>
 <% else -%>
 User_Alias NGINX_ADMIN = %nginx-admin
 <% end -%>
-<% if has_variable?("sudo_nginx_admin_cmnd") -%>
-Cmnd_Alias NGINX_ADMIN = <%= sudo_nginx_admin_cmnd %>
+<% if @sudo_cmnd -%>
+Cmnd_Alias NGINX_ADMIN = <%= @sudo_cmnd %>
 <% else -%>
 Cmnd_Alias NGINX_ADMIN = /etc/init.d/nginx, /bin/su <%= scope.lookupvar("nginx::params::nginx_user") %>, /bin/su - <%= scope.lookupvar("nginx::params::nginx_user") %>, /usr/sbin/nginx
 <% end -%>

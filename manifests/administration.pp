@@ -1,4 +1,6 @@
-class nginx::administration {
+class nginx::administration(
+  $sudo_user = $sudo_nginx_admin_user,
+) {
   include nginx::params
 
   group { 'nginx-admin':
