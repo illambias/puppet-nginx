@@ -1,5 +1,5 @@
 class nginx::administration(
-  $sudo_user = $sudo_nginx_admin_user,
+  $sudo_user = undef,
 ) {
   include nginx::params
 
