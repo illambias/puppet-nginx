@@ -1,13 +1,13 @@
 server {
-    listen       <%= port %>;
-    server_name  <%= server_name %>;
+    listen       <%= @port %>;
+    server_name  <%= @server_name %>;
 
     #charset koi8-r;
 
     #access_log  logs/host.access.log  main;
 
     location / {
-      root   <%= doc_root %>/<%= name %>;
+      root   <%= @doc_root %>/<%= @name %>;
         index  index.html index.htm;
     }
 
@@ -19,7 +19,7 @@ server {
 	    gzip off; #gzip makes scripts feel slower since they have to complete before getting gzipped
 	    fastcgi_pass  localhost:8999;
 	    fastcgi_index index.cgi;
-	    fastcgi_param SCRIPT_FILENAME <%= doc_root %>$fastcgi_script_name;
+	    fastcgi_param SCRIPT_FILENAME <%= @doc_root %>$fastcgi_script_name;
 	    fastcgi_param QUERY_STRING     $query_string;
 	    fastcgi_param REQUEST_METHOD   $request_method;
 	    fastcgi_param CONTENT_TYPE     $content_type;
