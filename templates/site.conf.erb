@@ -13,7 +13,7 @@ server {
 
     #error_page  404              /404.html;
 
-<% if enable_cgi != false -%>
+<% if @enable_cgi != false -%>
 
     location ~ ^.*\.cgi$ {
 	    gzip off; #gzip makes scripts feel slower since they have to complete before getting gzipped
