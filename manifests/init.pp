@@ -32,6 +32,16 @@ class nginx {
     before => Service['nginx']
   }
 
+  #ssl config
+  file { '/etc/nginx/conf.d/ssl.conf':
+    source  => 'puppet:///modules/nginx/ssl.conf',
+    mode    => '0644',
+    owner   => 'root',
+    group   => 'root',
+    require => Package['nginx'],
+    notify  => Exec['nginx-reload'],
+  }
+
   file { ['/etc/nginx/sites-available',
   '/etc/nginx/sites-enabled', '/etc/nginx/conf.d',]:
     ensure  => directory,
