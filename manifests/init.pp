@@ -34,7 +34,7 @@ class nginx {
 
   #ssl config
   file { '/etc/nginx/conf.d/ssl.conf':
-    source  => 'puppet:///modules/nginx/ssl.conf',
+    content => template('nginx/ssl.conf.erb'),
     mode    => '0644',
     owner   => 'root',
     group   => 'root',
